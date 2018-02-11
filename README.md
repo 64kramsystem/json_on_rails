@@ -35,10 +35,10 @@ Create a table:
 
 ```
 class CreateUsers < ActiveRecord::Migration
-  def up
+  def change
     create_table "migration_models" do |t|
       t.string "login", null: false, limit: 24
-      t.column "extras", :json
+      t.json "extras"
     end
   end
 end
@@ -48,7 +48,7 @@ or add the column to an existing one:
 
 ```
 class CreateUsers < ActiveRecord::Migration
-  def up
+  def change
     add_column "users", "extras", :json
   end
 end
@@ -66,17 +66,14 @@ end
 then (ab)use the new attribute!:
 
 ```ruby
-user = User.create!(login: "saverio", extras: {"uses" => ["mysql", "json"]})
-user.extras.fetch("uses") # => ["mysql", "json"]
+User.create!(login: "saverio", extras: {"uses" => ["mysql", "json"]})
+# ...
+User.last.extras.fetch("uses") # => ["mysql", "json"]
 ```
 
 Don't forget that JSON doesn't support symbols, therefore, they can be set, but are accessed/loaded as strings.
 
 Users are encouraged to have a look at the test suite ([here](spec/json_on_rails/json_attributes_spec.rb) and [here](spec/json_on_rails/arel_methods_spec.rb)) for an exhaustive view of the functionality.
-
-## Limitations
-
-The column creation `t.json <column_name>` syntax is currently unsupported.
 
 [BS img]: https://travis-ci.org/saveriomiroddi/json_on_rails.svg?branch=master
 [CS img]: https://coveralls.io/repos/saveriomiroddi/json_on_rails/badge.png?branch=master
