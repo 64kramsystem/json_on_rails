@@ -35,7 +35,7 @@ Create a table:
 
 ```
 class CreateUsers < ActiveRecord::Migration
-  def up
+  def change
     create_table "migration_models" do |t|
       t.string "login", null: false, limit: 24
       t.json "extras"
@@ -48,7 +48,7 @@ or add the column to an existing one:
 
 ```
 class CreateUsers < ActiveRecord::Migration
-  def up
+  def change
     add_column "users", "extras", :json
   end
 end
@@ -66,8 +66,9 @@ end
 then (ab)use the new attribute!:
 
 ```ruby
-user = User.create!(login: "saverio", extras: {"uses" => ["mysql", "json"]})
-user.extras.fetch("uses") # => ["mysql", "json"]
+User.create!(login: "saverio", extras: {"uses" => ["mysql", "json"]})
+# ...
+User.last.extras.fetch("uses") # => ["mysql", "json"]
 ```
 
 Don't forget that JSON doesn't support symbols, therefore, they can be set, but are accessed/loaded as strings.
