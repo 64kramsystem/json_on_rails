@@ -18,7 +18,7 @@ The inner working is simple, and uses the standard Rails (internal) APIs; this i
 Add the gem to the Gemfile of your rails project:
 
 ```ruby
-gem "json_on_rails", "~> 0.1.1"
+gem "json_on_rails", "~> 0.1.2"
 ```
 
 and update the environment:
