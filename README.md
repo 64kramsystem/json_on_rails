@@ -18,10 +18,10 @@ The inner working is simple, and uses the standard Rails (internal) APIs; this i
 Add the gem to the Gemfile of your rails project:
 
 ```ruby
-gem "json_on_rails", "~> 0.1.0"
+gem "json_on_rails", "~> 0.1.1"
 ```
 
-and update the Gemfile.lock:
+and update the environment:
 
 ```sh
 $ bundle install
@@ -70,7 +70,7 @@ user = User.create!(login: "saverio", extras: {"uses" => ["mysql", "json"]})
 user.extras.fetch("uses") # => ["mysql", "json"]
 ```
 
-Don't forget that JSON doesn't support symbols, therefore, they can be saved, but are accessed/loaded as strings.
+Don't forget that JSON doesn't support symbols, therefore, they can be set, but are accessed/loaded as strings.
 
 Users are encouraged to have a look at the test suite ([here](spec/json_on_rails/json_attributes_spec.rb) and [here](spec/json_on_rails/arel_methods_spec.rb)) for an exhaustive view of the functionality.
 
