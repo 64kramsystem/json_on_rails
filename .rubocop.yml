@@ -1,0 +1,45 @@
+inherit_from: .rubocop_todo.yml
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.1
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 23
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Metrics/ClassLength:
+  Max: 134
+
+Metrics/LineLength:
+  Max: 132
+
+Metrics/MethodLength:
+  Max: 21
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+Style/EmptyElse:
+  Enabled: false
+
+Style/NegatedIf:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/TrailingCommaInLiteral:
+  Enabled: false
