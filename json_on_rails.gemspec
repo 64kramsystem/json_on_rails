@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
 
   s.add_runtime_dependency "activerecord", "~> 4.0"
-  s.add_runtime_dependency "mysql2", "~> 0.4"
+  s.add_runtime_dependency "mysql2", "~> 0.3"
 
   s.add_development_dependency "coveralls", "~> 0.8.21"
   s.add_development_dependency "rake", "~> 12.3"
