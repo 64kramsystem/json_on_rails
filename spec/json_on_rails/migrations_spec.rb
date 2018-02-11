@@ -23,17 +23,34 @@ describe "Migrations" do
   end
 
   context "on table creation" do
-    it "should support the :json data type" do
-      ActiveRecord::Schema.define do
-        create_table "migration_models" do |t|
-          t.string "login", null: false, limit: 24
-          t.column "extras", :json
+    context "using the :column DSL" do
+      it "should support the :json data type" do
+        ActiveRecord::Schema.define do
+          create_table "migration_models" do |t|
+            t.string "login", null: false, limit: 24
+            t.column "extras", :json
+          end
         end
+
+        MigrationModel.reset_column_information
+
+        expect(MigrationModel.columns_hash["extras"].sql_type).to eql("json")
       end
+    end
 
-      MigrationModel.reset_column_information
+    context "using the :type added DSL" do
+      it "should support the :json data type" do
+        ActiveRecord::Schema.define do
+          create_table "migration_models" do |t|
+            t.string "login", null: false, limit: 24
+            t.json "extras"
+          end
+        end
 
-      expect(MigrationModel.columns_hash["extras"].sql_type).to eql("json")
+        MigrationModel.reset_column_information
+
+        expect(MigrationModel.columns_hash["extras"].sql_type).to eql("json")
+      end
     end
   end
 
