@@ -7,7 +7,7 @@ This gem adds native support for MySQL [5.7] JSON data type to Rails 4.
 
 ## Introduction
 
-Rails 5 introduced native support for the [MySQL] JSON data type; however, due to the Rails feature policy, version 4 won't be receive this functionality.
+Rails 5 introduced native support for the [MySQL] JSON data type; however, due to the Rails feature policy, version 4 won't receive this functionality.
 
 This gem adds a Rails JSON data type, allowing the user to work with JSON attributes transparently, as a Array/Hash/etc.
 
@@ -93,4 +93,4 @@ end
 
 Don't forget that JSON doesn't support symbols, therefore, they can be set, but are accessed/loaded as strings.
 
-Users are encouraged to have a look at the test suite ([here](spec/json_on_rails/json_attributes_spec.rb) and [here](spec/json_on_rails/arel_methods_spec.rb)) for an exhaustive view of the functionality.
+Users are encouraged to have a look at the test suite (especially [here](spec/json_on_rails/json_attributes_spec.rb) and [here](spec/json_on_rails/arel_methods_spec.rb)) for an exhaustive view of the functionality.
