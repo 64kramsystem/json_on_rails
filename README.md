@@ -1,5 +1,5 @@
-[![Build Status][BS img]](https://travis-ci.org/saveriomiroddi/json_on_rails)
-[![Coverage Status][CS img]](https://coveralls.io/r/saveriomiroddi/json_on_rails)
+[![Build Status](https://travis-ci.org/saveriomiroddi/json_on_rails)](https://travis-ci.org/saveriomiroddi/json_on_rails.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/saveriomiroddi/json_on_rails/badge.svg?branch=master)](https://coveralls.io/github/saveriomiroddi/json_on_rails?branch=master)
 
 # JSON on Rails
 
@@ -74,6 +74,3 @@ User.last.extras.fetch("uses") # => ["mysql", "json"]
 Don't forget that JSON doesn't support symbols, therefore, they can be set, but are accessed/loaded as strings.
 
 Users are encouraged to have a look at the test suite ([here](spec/json_on_rails/json_attributes_spec.rb) and [here](spec/json_on_rails/arel_methods_spec.rb)) for an exhaustive view of the functionality.
-
-[BS img]: https://travis-ci.org/saveriomiroddi/json_on_rails.svg?branch=master
-[CS img]: https://coveralls.io/repos/saveriomiroddi/json_on_rails/badge.png?branch=master
