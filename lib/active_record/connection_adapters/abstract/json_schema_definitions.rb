@@ -15,14 +15,5 @@ module ActiveRecord
         column_names.each { |name| column(name, :json, options) }
       end
     end
-
-    class Table
-      def json(*args)
-        options = args.extract_options!
-        args.each do |column_name|
-          @base.add_column(name, column_name, :json, options)
-        end
-      end
-    end
   end
 end
