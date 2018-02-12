@@ -8,13 +8,13 @@ describe "AREL Methods" do
     # a string comparison; for that, the LIKE operator must be used (see below).
     #
     it "should not find the instance, when searching via equality operator" do
-      found_user = User.find_by('extras = ?', '{}')
+      found_user = User.find_by("extras = ?", "{}")
 
       expect(found_user).to be(nil)
     end
 
     it "should not find the instance, when searching via LIKE operator" do
-      found_user = User.find_by('extras LIKE ?', '{}')
+      found_user = User.find_by("extras LIKE ?", "{}")
 
       expect(found_user).to eql(user)
     end
