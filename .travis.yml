@@ -1,4 +1,6 @@
 language: ruby
+cache: bundler
+bundler_args: --without tools
 rvm:
   - 2.1
   - 2.2
