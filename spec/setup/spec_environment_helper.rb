@@ -6,15 +6,21 @@ class SpecEnvironmentHelper
   TEST_MODELS_PATH = File.expand_path("models", __dir__)
 
   def setup_spec_environment
+    setup_coverage_tool
     boot_mini_app
     require_components
     connection_configuration = load_connection_configuration
     prepare_database(connection_configuration)
     autoload_models
-    setup_coverage_tool
   end
 
   private
+
+  def setup_coverage_tool
+    require "coveralls"
+
+    Coveralls.wear!
+  end
 
   def boot_mini_app
     # Requiring rails (/all) is the minimum for using rspec-rails, which gives transactional UTs.
@@ -57,11 +63,5 @@ class SpecEnvironmentHelper
     # Since we don't have a rails environment (see #require_dependencies), we add the model
     # paths directly. See http://guides.rubyonrails.org/autoloading_and_reloading_constants.html#autoload-paths
     ActiveSupport::Dependencies.autoload_paths << TEST_MODELS_PATH
-  end
-
-  def setup_coverage_tool
-    require "coveralls"
-
-    Coveralls.wear!
   end
 end
