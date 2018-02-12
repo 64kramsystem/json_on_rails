@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# Resources:
+# ActiveRecord resources:
 #
-#     gems/activerecord-4.<version>/lib/active_record/attributes.rb
-#     gems/activerecord-4.<version>/lib/active_record/type/value.rb
-#     gems/activerecord-4.<version>/lib/active_record/type/mutable.rb
+#     lib/active_record/attributes.rb
+#     lib/active_record/type/value.rb
+#     lib/active_record/type/mutable.rb
 #
 module ActiveRecord
   module Type
