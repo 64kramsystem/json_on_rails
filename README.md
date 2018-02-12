@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/saveriomiroddi/json_on_rails)](https://travis-ci.org/saveriomiroddi/json_on_rails.svg?branch=master)
+[![Build Status](https://travis-ci.org/saveriomiroddi/json_on_rails.svg?branch=master)](https://travis-ci.org/saveriomiroddi/json_on_rails)
 [![Coverage Status](https://coveralls.io/repos/github/saveriomiroddi/json_on_rails/badge.svg?branch=master)](https://coveralls.io/github/saveriomiroddi/json_on_rails?branch=master)
 
 # JSON on Rails
