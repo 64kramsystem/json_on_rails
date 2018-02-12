@@ -19,8 +19,8 @@ describe "AREL Methods" do
       expect(found_user).to eql(user)
     end
 
-    # WATCH OUT! The semantic of passing an Array/Hash in Rails is not what one would think it
-    # would for a JSON data type. This is independent of this gem.
+    # WATCH OUT! AREL finders are (appropriately) not overloaded. In order to perform JSON-specific
+    # comparisons, use the MySQL operators (see above).
     #
     context "passing collection objects" do
       it "should not find the instance, when searching an empty hash instance" do
@@ -29,12 +29,10 @@ describe "AREL Methods" do
         expect(found_user).to be(nil)
       end
 
-      it "should not find the instance, when searching an array instance" do
-        user.update_attributes!(extras: [1, 2, 3])
+      it "should raise an error, when searching an array instance" do
+        error_message = "Invalid data type for JSON serialization: #{1.class} (only Hash/Array/nil supported)"
 
-        found_user = User.find_by(extras: [1, 2, 3])
-
-        expect(found_user).to be(nil)
+        expect { User.find_by(extras: [1, 2, 3]) }.to raise_error(ArgumentError, error_message)
       end
     end
   end

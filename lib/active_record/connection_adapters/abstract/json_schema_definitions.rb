@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require "active_record/connection_adapters/abstract/schema_definitions"
+
 module ActiveRecord
   # Unfortunately, the type shorthands are hardcoded, and the code itself is not encapsulated
   # in a method, so there's not much design freedom.

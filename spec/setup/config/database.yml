@@ -1,4 +1,4 @@
-adapter: mysql2
+adapter: mysql2_json
 encoding: utf8
 database: json_on_rails_test
 socket: <%= ENV.fetch("MYSQL_SOCKET", "/var/run/mysqld/mysqld.sock") %>
