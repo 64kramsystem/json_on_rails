@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 0) do
 end
 ```
 
+## Caveat/further documentation
+
 Don't forget that JSON doesn't support symbols, therefore, they can be set, but are accessed/loaded as strings.
 
 Users are encouraged to have a look at the test suite ([here](spec/json_on_rails/json_attributes_spec.rb) and [here](spec/json_on_rails/arel_methods_spec.rb)) for an exhaustive view of the functionality.
