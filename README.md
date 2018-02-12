@@ -31,6 +31,13 @@ that's all!
 
 ## Usage/example
 
+Change the `mysql` connection adapter to `mysql2_json`, in `config/database.yml`:
+
+```yaml
+default: &default
+  adapter: mysql2_json
+```
+
 Create a table:
 
 ```
@@ -54,13 +61,10 @@ class CreateUsers < ActiveRecord::Migration
 end
 ```
 
-define the model:
+define the model (rails will automatically pick up the data type):
 
 ```
-class User < ActiveRecord::Base
-  attribute :extras, ActiveRecord::Type::Json.new
-end
-
+class User < ActiveRecord::Base; end
 ```
 
 then (ab)use the new attribute!:
@@ -69,6 +73,20 @@ then (ab)use the new attribute!:
 User.create!(login: "saverio", extras: {"uses" => ["mysql", "json"]})
 # ...
 User.last.extras.fetch("uses") # => ["mysql", "json"]
+```
+
+The schema can be dumped as usual; json columns will be transparently included:
+
+```sh
+$ rake db:schema:dump
+$ cat db/schema.rb
+ActiveRecord::Schema.define(version: 0) do
+
+  create_table "users", force: :cascade do |t|
+    t.json   "extras"
+  end
+
+end
 ```
 
 Don't forget that JSON doesn't support symbols, therefore, they can be set, but are accessed/loaded as strings.
