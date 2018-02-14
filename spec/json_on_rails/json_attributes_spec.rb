@@ -109,4 +109,48 @@ describe "JSON attributes", :include_json_attributes_spec_helper do
       end
     end
   end
+
+  # Smoke tests, to verify that the default works.
+  #
+  context "with Rails-defined defaults" do
+    # If a plain `{}` (or `[]`) is used as default, it will be shared on each model instantiation.
+    #
+    # This can be solved by using:
+    #
+    #     attribute :extras, ActiveRecord::Type::Json.new, default: -> { {} }
+    #
+    # but the following support would be required:
+    #
+    # - Type::Json: Proc/Hash/Array in #cast_value;
+    # - Proc: (Rails) marshalling, in case a dev wants to serialize the instance.
+    #
+    # which is not really worth.
+    #
+    context "on instantiation" do
+      it "should set the default" do
+        user_with_default = WithDefaultUser.new
+
+        expect do
+          user_with_default.extras["amiga500"] = "awesome"
+          user_with_default.save!
+        end.not_to raise_error
+      end
+    end
+
+    context "on create!" do
+      it "should set the default" do
+        user = WithDefaultUser.create!
+
+        expect { user.extras["amiga500"] = "awesome" }.not_to raise_error
+      end
+
+      it "should save the value when saving, even when not setting it" do
+        WithDefaultUser.create!
+
+        user = WithDefaultUser.find_by("extras LIKE ?", {}.to_json)
+
+        expect(user).not_to be(nil)
+      end
+    end
+  end
 end
