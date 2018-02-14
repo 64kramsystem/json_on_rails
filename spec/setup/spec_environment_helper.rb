@@ -5,6 +5,8 @@ class SpecEnvironmentHelper
   SCHEMA_FILE = File.expand_path("db/schema.rb", __dir__)
   TEST_MODELS_PATH = File.expand_path("models", __dir__)
 
+  DB_CONFIG_ENV_VAR = "JSON_ON_RAILS_DB_CONFIG"
+
   def setup_spec_environment
     setup_coverage_tool
     boot_mini_app
@@ -42,8 +44,11 @@ class SpecEnvironmentHelper
   end
 
   def load_connection_configuration
+    db_config_key = ENV[DB_CONFIG_ENV_VAR] || raise("Set the env variable #{DB_CONFIG_ENV_VAR} to `mysql` or `pgsql`")
+
     erb_db_configuration = ERB.new(File.read(DB_CONFIGFILE)).result
-    YAML.safe_load(erb_db_configuration)
+
+    YAML.safe_load(erb_db_configuration, [], [], true).fetch(db_config_key)
   end
 
   def prepare_database(configuration)
