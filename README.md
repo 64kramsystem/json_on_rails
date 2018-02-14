@@ -89,8 +89,26 @@ ActiveRecord::Schema.define(version: 0) do
 end
 ```
 
-## Caveat/further documentation
+## Caveats/further documentation
+
+### MySQL SELECT DISTINCT JSON bug (**IMPORTANT!**)
+
+MySQL versions up to at least 5.7.12 have a serious JSON bug.
+
+In some cases, queries using DISTINCT on VARCHAR and JSON columns will not perform the deduplication, resulting in duplicate rows being returned, if there are any.
+
+This has been fixed between 5.7.13 and 5.7.18 (I couldn't find the related enty in the release notes), therefore, MySQL 5.7 users are urged to upgrade to a recent version if they use JSON columns.
+
+### Documentation
+
+Users are encouraged to have a look at the test suite (especially [here](spec/json_on_rails/json_attributes_spec.rb) and [here](spec/json_on_rails/arel_methods_spec.rb)) for an exhaustive view of the functionality.
+
+### JSON Symbols
 
 Don't forget that JSON doesn't support symbols, therefore, they can be set, but are accessed/loaded as strings.
 
-Users are encouraged to have a look at the test suite (especially [here](spec/json_on_rails/json_attributes_spec.rb) and [here](spec/json_on_rails/arel_methods_spec.rb)) for an exhaustive view of the functionality.
+### MySQL decimal normalization
+
+MySQL (up to 8.0.3, included) will normalize decimal numbers with zero fractional (e.g. `5.0`) to integers, therefore, changing the data type on save.
+
+See [relevant bug](https://bugs.mysql.com/bug.php?id=88230).
