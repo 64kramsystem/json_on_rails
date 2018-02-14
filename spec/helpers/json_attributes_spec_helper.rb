@@ -22,4 +22,8 @@ module JsonAttributesSpecHelper
 
     Gem::Version.new(version)
   end
+
+  def self.postgres?
+    ActiveRecord::Base.connection.class::ADAPTER_NAME == "PostgreSQL"
+  end
 end

@@ -7,6 +7,18 @@ rvm:
   - 2.3
   - 2.4
   - 2.5
+matrix:
+  include:
+    - rvm: 2.1
+      env: "JSON_ON_RAILS_DB_CONFIG=mysql"
+    - rvm: 2.2
+      env: "JSON_ON_RAILS_DB_CONFIG=mysql"
+    - rvm: 2.3
+      env: "JSON_ON_RAILS_DB_CONFIG=mysql"
+    - rvm: 2.4
+      env: "JSON_ON_RAILS_DB_CONFIG=pgsql"
+    - rvm: 2.5
+      env: "JSON_ON_RAILS_DB_CONFIG=mysql"
 addons:
   apt:
     sources:

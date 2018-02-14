@@ -69,20 +69,20 @@ describe "JSON attributes", :include_json_attributes_spec_helper do
       # README!!! Important. MySQL <= 8.0.4 automatically converts decimals with zero fractional
       # part to integers, so this must be taken into account (see https://bugs.mysql.com/bug.php?id=88230).
       #
-      if JsonAttributesSpecHelper.mysql_version < Gem::Version.new("8.0.4")
-        it "should return an Integer for Floats with zero fractional part" do
-          extras_on_user_lifecycle([1.0]) do |after_instantiation, after_save, after_reload|
-            expect(after_instantiation).to eql([1.0])
-            expect(after_save).to eql([1.0])
-            expect(after_reload).to eql([1])
-          end
-        end
-      else
+      if JsonAttributesSpecHelper.postgres? || JsonAttributesSpecHelper.mysql_version >= Gem::Version.new("8.0.4")
         it "should return a Float for Floats with zero fractional part" do
           extras_on_user_lifecycle([1.0]) do |after_instantiation, after_save, after_reload|
             expect(after_instantiation).to eql([1.0])
             expect(after_save).to eql([1.0])
             expect(after_reload).to eql([1.0])
+          end
+        end
+      else
+        it "should return an Integer for Floats with zero fractional part" do
+          extras_on_user_lifecycle([1.0]) do |after_instantiation, after_save, after_reload|
+            expect(after_instantiation).to eql([1.0])
+            expect(after_save).to eql([1.0])
+            expect(after_reload).to eql([1])
           end
         end
       end

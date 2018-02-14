@@ -1,5 +1,13 @@
-mysql: &mysql
-  adapter: mysql2_json
+common: &common
   encoding: utf8
   database: json_on_rails_test
+
+mysql: &mysql
+  <<: *common
+  adapter: mysql2_json
   socket: <%= ENV.fetch("MYSQL_SOCKET", "/var/run/mysqld/mysqld.sock") %>
+
+pgsql: &pgsql
+  <<: *common
+  adapter: postgresql
+  host: localhost
