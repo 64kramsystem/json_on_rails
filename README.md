@@ -27,16 +27,16 @@ and update the environment:
 $ bundle install
 ```
 
-that's all!
-
-## Usage/example
-
 Change the `mysql` connection adapter to `mysql2_json`, in `config/database.yml`:
 
 ```yaml
 default: &default
   adapter: mysql2_json
 ```
+
+that's all!
+
+## Usage/example
 
 Create a table:
 
