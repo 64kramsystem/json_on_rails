@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.name        = "json_on_rails"
   s.version     = JsonOnRails::VERSION
   s.summary     = "MySQL JSON support for Rails 4.2"
-  s.description = "Add native support for MySQL [5.7] JSON data type to Rails 4.2"
+  s.description = "Add native support for MySQL [5.7+] JSON data type to Rails 4.2"
   s.date        = "2018-02-12"
 
   s.required_ruby_version = ">= 2.2.0"
