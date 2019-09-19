@@ -3,7 +3,7 @@
 
 # JSON on Rails
 
-This gem adds native support for MySQL [5.7] JSON data type to Rails 4.
+This gem adds native support for MySQL [5.7] JSON data type to Rails 4.2.
 
 ## Introduction
 

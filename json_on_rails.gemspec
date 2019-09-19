@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = "json_on_rails"
   s.version     = JsonOnRails::VERSION
-  s.summary     = "MySQL JSON support for Rails 4"
-  s.description = "Add native support for MySQL [5.7] JSON data type to Rails 4."
+  s.summary     = "MySQL JSON support for Rails 4.2"
+  s.description = "Add native support for MySQL [5.7] JSON data type to Rails 4.2"
   s.date        = "2018-02-12"
 
   s.required_ruby_version = ">= 2.2.0"
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.files        = Dir["LICENSE", "README.md", "lib/**/*"]
   s.require_path = "lib"
 
-  s.add_runtime_dependency "activerecord", "~> 4.0"
+  s.add_runtime_dependency "activerecord", "~> 4.2.0"
   s.add_runtime_dependency "mysql2", "~> 0.3"
 
   s.add_development_dependency "rake", "~> 12.3"
