@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = "Add native support for MySQL [5.7] JSON data type to Rails 4."
   s.date        = "2018-02-12"
 
-  s.required_ruby_version = ">= 2.1.0"
+  s.required_ruby_version = ">= 2.2.0"
 
   s.license = "GPL-3.0"
 
